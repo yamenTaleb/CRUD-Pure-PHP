@@ -9,6 +9,7 @@
                     <div class="ml-10 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="/" class="<?= uriis('/') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium " aria-current="page">Home</a>
+                        <a href="/notes" class="<?= uriis('/notes') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium  block" aria-current="page">Notes</a>
                         <a href="/about" class="<?= uriis('/about') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium ">About</a>
                         <a href="/contact" class="<?= uriis('/contact') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium ">Contact</a>
                     </div>
@@ -75,6 +76,7 @@
     <div class="md:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <a href="/" class="<?= uriis('/') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium  block" aria-current="page">Home</a>
+            <a href="/notes" class="<?= uriis('/notes') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium  block" aria-current="page">Home</a>
             <a href="/about" class="<?= uriis('/about') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium block ">About</a>
             <a href="/contact" class="<?= uriis('/contact') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium block ">Contact</a>
         </div>
