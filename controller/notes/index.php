@@ -9,7 +9,7 @@ $currentUser = 1;
 
 $notes = $db->query('SELECT * FROM notes WHERE user_id = :id', [
     'id' => $currentUser
-])->fetchAll();
+])->get();
 
 view('notes/index.view.php', [
     'heading' => 'My Notes',

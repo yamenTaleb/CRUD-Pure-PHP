@@ -18,3 +18,5 @@ $route->get('/contact', 'controller/contact.php');
 $route->get('/notes', 'controller/notes/index.php');
 $route->get('/note', 'controller/notes/show.php');
 $route->get('/note/create', 'controller/notes/create.php');
+$route->delete('/note', 'controller/notes/destroy.php');
+$route->post('/notes', 'controller/notes/store.php');
