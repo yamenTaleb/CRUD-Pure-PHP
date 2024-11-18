@@ -1,13 +1,16 @@
 <?php
 
+use Core\Database;
+use Core\Response;
+
 $heading = 'Your Note';
+$currentUser = 1;
 
 $config = require base_path('config.php');
 $db = new Database($config['database']);
 
-$currentUser = 1;
 
-$note = $db->query('SELECT * FROM notes WHERE id = :id', [
+$note = $db->query('SELECT' . ' * FROM notes WHERE id = :id', [
     'id' => $_GET['id'],
 ])->fetch();
 

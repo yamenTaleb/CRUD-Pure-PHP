@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 enum Response: int
 {
     case Forbidden = 403;

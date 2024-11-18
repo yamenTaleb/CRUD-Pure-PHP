@@ -1,5 +1,7 @@
 <?php
 
+use Core\Response;
+
 function dd(mixed $value): void
 {
     echo "<pre>";
@@ -25,7 +27,7 @@ function authorize($condition, $status = Response::Forbidden)
 
 function base_path(string $path): string
 {
-    return __DIR__ . "/$path";
+    return BASE_PATH . $path;
 }
 
 function view(string $path, array $attributes = []): void

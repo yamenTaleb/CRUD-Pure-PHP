@@ -1,8 +1,14 @@
 <?php
 
+namespace Core;
+
+use PDO;
+use PDOException;
+
 class Database
 {
-    public Object $connection;
+    public object $connection;
+
     public function __construct($config)
     {
 
@@ -17,7 +23,7 @@ class Database
         }
     }
 
-    public function query(string $query, ?array $params = null): Object
+    public function query(string $query, ?array $params = null): object
     {
         $statement = $this->connection->prepare($query);
 
