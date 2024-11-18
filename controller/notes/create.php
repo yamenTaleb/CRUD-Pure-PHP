@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-view("note-create.view.php", [
+view("notes/create.view.php", [
     'heading' => 'Create Note',
     'errors' => $error
 ]);

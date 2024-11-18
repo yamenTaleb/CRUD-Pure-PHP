@@ -36,3 +36,10 @@ function view(string $path, array $attributes = []): void
 
     require base_path('views/' . $path);
 }
+function abort($code = Response::NotFound->value) {
+    http_response_code($code);
+
+    view("$code.php");
+
+    die();
+}

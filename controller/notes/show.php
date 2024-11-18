@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     authorize($note['user_id'] === $currentUser, Response::Forbidden->value);
 
-    view('note.view.php', [
+    view('notes/show.view.php', [
         'note' => $note,
         'heading' => $heading,
     ]);

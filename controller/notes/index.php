@@ -11,7 +11,7 @@ $notes = $db->query('SELECT * FROM notes WHERE user_id = :id', [
     'id' => $currentUser
 ])->fetchAll();
 
-view('notes.view.php', [
+view('notes/index.view.php', [
     'heading' => 'My Notes',
     'notes' => $notes
 ]);
