@@ -13,6 +13,11 @@
         <h3 class="text-blue-500 text-lg mb-3">
             <?= $note['body'] ?>
         </h3>
+
+        <form method="post">
+            <input type="hidden" name="id" value="<?= $note['id'] ?>">
+            <button type="submit" class="text-white bg-red-500 px-2.5 py-2 rounded hover:bg-red-600">Delete</button>
+        </form>
     </div>
 </main>
 
