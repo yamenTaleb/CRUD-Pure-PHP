@@ -20,3 +20,5 @@ $route->get('/note', 'controller/notes/show.php');
 $route->get('/note/create', 'controller/notes/create.php');
 $route->delete('/note', 'controller/notes/destroy.php');
 $route->post('/notes', 'controller/notes/store.php');
+$route->get('/note/edit', 'controller/notes/edit.php');
+$route->patch('/note', 'controller/notes/update.php');

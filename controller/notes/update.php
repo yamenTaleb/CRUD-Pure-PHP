@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Response;
 use Core\Validator;
 
 if (! Validator::string($_POST['body'], 10, 1000)) {
@@ -11,13 +12,20 @@ if (! Validator::string($_POST['body'], 10, 1000)) {
         'heading' => 'Create Note',
         'errors' => $error
     ]);
-}
-else {
+} else {
+    $currentUser = 1;
+
     $db = App::resolve(Database::class);
 
-    $db->query('INSERT' . ' INTO notes (body, user_id) VALUES (:body, :user_id)', [
+    $note = $db->query('SELECT' . ' * FROM notes WHERE id = :id', [
+        'id' => $_POST['id'],
+    ])->findOrFail();
+
+    authorize($note['user_id'] === $currentUser, Response::Forbidden->value);
+
+    $db->query('UPDATE' . ' notes SET body = :body WHERE id = :id', [
         'body' => $_POST['body'],
-        'user_id' => 1
+        'id' => $_POST['id'],
     ]);
 
     header('location: /notes');

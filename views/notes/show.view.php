@@ -14,11 +14,15 @@
             <?= $note['body'] ?>
         </h3>
 
-        <form method="post" action="/note">
-            <input type="hidden" name="_method" value="DELETE"></input6>
-            <input type="hidden" name="id" value="<?= $note['id'] ?>">
-            <button type="submit" class="text-white bg-red-500 px-2.5 py-2 rounded hover:bg-red-600">Delete</button>
-        </form>
+        <div class="flex items-center space-x-2">
+            <a href="note/edit?id=<?= $note['id']?>" class="text-white bg-gray-400 px-2.5 py-2 rounded hover:bg-gray-500">Edit</a>
+
+            <form method="post" action="/note">
+                <input type="hidden" name="_method" value="DELETE"></input6>
+                <input type="hidden" name="id" value="<?= $note['id'] ?>">
+                <button type="submit" class="text-white bg-red-500 px-2.5 py-2 rounded hover:bg-red-600">Delete</button>
+            </form>
+        </div>
     </div>
 </main>
 
