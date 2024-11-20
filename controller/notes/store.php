@@ -1,5 +1,6 @@
 <?php
 
+use Core\App;
 use Core\Database;
 use Core\Validator;
 
@@ -12,8 +13,7 @@ if (! Validator::string($_POST['body'], 10, 1000)) {
     ]);
 }
 else {
-    $config = require base_path('config.php');
-    $db = new Database($config['database']);
+    $db = App::resolve(Database::class);
 
     $db->query('INSERT' . ' INTO notes (body, user_id) VALUES (:body, :user_id)', [
         'body' => $_POST['body'],
