@@ -15,13 +15,13 @@ $route->get('/', 'controller/index.php');
 $route->get('/about', 'controller/about.php');
 $route->get('/contact', 'controller/contact.php');
 
-$route->get('/notes', 'controller/notes/index.php');
-$route->get('/note', 'controller/notes/show.php');
-$route->get('/note/create', 'controller/notes/create.php');
-$route->delete('/note', 'controller/notes/destroy.php');
-$route->post('/notes', 'controller/notes/store.php');
-$route->get('/note/edit', 'controller/notes/edit.php');
-$route->patch('/note', 'controller/notes/update.php');
+$route->get('/notes', 'controller/notes/index.php')->only('auth');
+$route->get('/note', 'controller/notes/show.php')->only('auth');
+$route->get('/note/create', 'controller/notes/create.php')->only('auth');
+$route->delete('/note', 'controller/notes/destroy.php')->only('auth');
+$route->post('/notes', 'controller/notes/store.php')->only('auth');
+$route->get('/note/edit', 'controller/notes/edit.php')->only('auth');
+$route->patch('/note', 'controller/notes/update.php')->only('auth');
 
-$route->get('/register', 'controller/registration/create.php');
-$route->post('/register', 'controller/registration/store.php');
+$route->get('/register', 'controller/registration/create.php')->only('guest');
+$route->post('/register', 'controller/registration/store.php')->only('guest');

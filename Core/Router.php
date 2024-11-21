@@ -2,50 +2,63 @@
 
 namespace Core;
 
-use Core\Response;
+use Core\Middleware\Middleware;
 
 class Router
 {
-    public $routes = [];
+    public array $routes = [];
 
-    public function add($uri, $controller, $method)
+    public function add($uri, $controller, $method): static
     {
-        $this->routes[] = compact('uri', 'controller', 'method');
-    }
-    public function get(string $uri, string $controller): void
-    {
-        $this->add($uri, $controller, 'GET');
-    }
+        $middleware = null;
 
-    public function post(string $uri, string $controller): void
-    {
-        $this->add($uri, $controller, 'POST');
-    }
+        $this->routes[] = compact('uri', 'controller', 'method', 'middleware');
 
-    public function delete(string $uri, string $controller): void
+        return $this;
+    }
+    public function get(string $uri, string $controller): static
     {
-        $this->add($uri, $controller, 'DELETE');
+        return $this->add($uri, $controller, 'GET');
     }
 
-    public function put(string $uri, string $controller): void
+    public function post(string $uri, string $controller): static
     {
-        $this->add($uri, $controller, 'PUT');
+        return $this->add($uri, $controller, 'POST');
     }
 
-    public function patch(string $uri, string $controller): void
+    public function delete(string $uri, string $controller): static
     {
-        $this->add($uri, $controller, 'PATCH');
+       return $this->add($uri, $controller, 'DELETE');
+    }
+
+    public function put(string $uri, string $controller): static
+    {
+        return $this->add($uri, $controller, 'PUT');
+    }
+
+    public function patch(string $uri, string $controller): static
+    {
+        return $this->add($uri, $controller, 'PATCH');
     }
 
     public function router(string $uri, string $method): void
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
+                Middleware::resolve($route['middleware']);
+
                 require base_path($route['controller']);
                 break;
             }
         }
 
         abort();
+    }
+
+    public function only(string $key): static
+    {
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key;
+
+        return $this;
     }
 }

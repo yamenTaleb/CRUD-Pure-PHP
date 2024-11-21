@@ -43,3 +43,10 @@ function abort($code = Response::NotFound->value) {
 
     die();
 }
+
+function redirect(string $path): void
+{
+    header("location: $path");
+
+    die();
+}

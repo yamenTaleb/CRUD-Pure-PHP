@@ -28,19 +28,14 @@ $user = $db->query('SELECT' . ' * FROM users WHERE email = :email', [
     'email' => $email
 ])->find();
 
-if ($user) {
-    header('location: /');
-    die();
-} else {
+if (! $user) {
     $db->query('INSERT' . ' INTO users (email, password) VALUES (:email, :password)', [
         'email' => $email,
-        'password' => $password
+        'password' => password_hash($password, PASSWORD_BCRYPT),
     ]);
 
     $_SESSION['user'] = [
         'email' => $email
     ];
-
-    header('location: /');
-    die();
 }
+redirect('/');
