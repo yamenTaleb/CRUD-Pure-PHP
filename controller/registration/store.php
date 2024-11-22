@@ -33,9 +33,10 @@ if (! $user) {
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT),
     ]);
-
-    $_SESSION['user'] = [
+    $user = $db->query('SELECT' . ' * FROM users WHERE email = :email', [
         'email' => $email
-    ];
+    ])->find();
+
+    login($user);
 }
 redirect('/');

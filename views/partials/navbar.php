@@ -9,7 +9,9 @@
                     <div class="ml-10 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <a href="/" class="<?= uriis('/') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium " aria-current="page">Home</a>
-                        <a href="/notes" class="<?= uriis('/notes') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium  block" aria-current="page">Notes</a>
+                        <?php if (isset($_SESSION['user'])): ?>
+                            <a href="/notes" class="<?= uriis('/notes') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium  block" aria-current="page">Notes</a>
+                        <?php endif ?>
                         <a href="/about" class="<?= uriis('/about') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium ">About</a>
                         <a href="/contact" class="<?= uriis('/contact') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-3 py-2 text-sm font-medium ">Contact</a>
                     </div>
@@ -54,6 +56,21 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
+                    <?php if (!isset($_SESSION['user']) ?? false): ?>
+                        <div class="flex space-x-2">
+                            <a href="/register" class="<?= uriis('/register') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-2 py-2 text-sm font-medium ">Register</a>
+
+                            <a href="/login" class="<?= uriis('/login') ?  'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' ?> rounded-md px-2 py-2 text-sm font-medium ">Login</a>
+                        </div>
+                    <?php endif ?>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <div class="ml-3">
+                            <form action="/session" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-2 py-2 text-sm font-medium">Logout</button>
+                            </form>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
             <div class="-mr-2 flex md:hidden">

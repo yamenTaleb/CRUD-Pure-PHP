@@ -48,7 +48,7 @@ class Router
                 Middleware::resolve($route['middleware']);
 
                 require base_path($route['controller']);
-                break;
+                die();
             }
         }
 

@@ -13,7 +13,7 @@ if (! Validator::string($_POST['body'], 10, 1000)) {
         'errors' => $error
     ]);
 } else {
-    $currentUser = 1;
+    $currentUser = 8;
 
     $db = App::resolve(Database::class);
 

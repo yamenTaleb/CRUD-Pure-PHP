@@ -4,7 +4,7 @@ use Core\App;
 use Core\Database;
 use Core\Response;
 
-$currentUser = 1;
+$currentUser = 8;
 
 $db = App::resolve(Database::class);
 

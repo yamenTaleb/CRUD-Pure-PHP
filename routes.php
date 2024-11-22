@@ -25,3 +25,7 @@ $route->patch('/note', 'controller/notes/update.php')->only('auth');
 
 $route->get('/register', 'controller/registration/create.php')->only('guest');
 $route->post('/register', 'controller/registration/store.php')->only('guest');
+
+$route->get('/login', 'controller/sessions/create.php')->only('guest');
+$route->post('/session', 'controller/sessions/store.php')->only('guest');
+$route->delete('/session', 'controller/sessions/destroy.php')->only('auth');
