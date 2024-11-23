@@ -43,16 +43,23 @@ class Router
 
     public function router(string $uri, string $method): void
     {
+        $route = null;
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
                 Middleware::resolve($route['middleware']);
 
-                require base_path($route['controller']);
-                die();
+                require base_path('http/controller/' . $route['controller']);
+                break;
             }
         }
+        if (! ($route['uri'] === $uri && $route['method'] === $method)) {
+            abort();
+        }
+    }
 
-        abort();
+    public function previousURL(): string
+    {
+       return $_SERVER['HTTP_REFERER'];
     }
 
     public function only(string $key): static

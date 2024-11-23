@@ -4,7 +4,7 @@ use Core\App;
 use Core\Database;
 use Core\Response;
 
-$currentUser = 8;
+$currentUserId = $_SESSION['user']['id'];
 
 $db = App::resolve(Database::class);
 
@@ -12,7 +12,7 @@ $note = $db->query('SELECT' . ' * FROM notes WHERE id = :id', [
     'id' => $_GET['id'],
 ])->findOrFail();
 
-authorize($note['user_id'] === $currentUser, Response::Forbidden->value);
+authorize($note['user_id'] === $currentUserId, Response::Forbidden->value);
 
 view('notes/show.view.php', [
     'note' => $note,

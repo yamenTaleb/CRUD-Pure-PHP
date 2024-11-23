@@ -1,6 +1,7 @@
 <?php
 
 use Core\App;
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
 
@@ -37,6 +38,6 @@ if (! $user) {
         'email' => $email
     ])->find();
 
-    login($user);
+    (new Authenticator)->login($user);
 }
 redirect('/');

@@ -13,7 +13,7 @@ if (! Validator::string($_POST['body'], 10, 1000)) {
         'errors' => $error
     ]);
 } else {
-    $currentUser = 8;
+    $currentUserId = $_SESSION['user']['id'];
 
     $db = App::resolve(Database::class);
 
@@ -21,7 +21,7 @@ if (! Validator::string($_POST['body'], 10, 1000)) {
         'id' => $_POST['id'],
     ])->findOrFail();
 
-    authorize($note['user_id'] === $currentUser, Response::Forbidden->value);
+    authorize($note['user_id'] === $currentUserId, Response::Forbidden->value);
 
     $db->query('UPDATE' . ' notes SET body = :body WHERE id = :id', [
         'body' => $_POST['body'],
