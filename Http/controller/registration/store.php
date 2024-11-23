@@ -1,43 +1,13 @@
 <?php
 
-use Core\App;
-use Core\Authenticator;
-use Core\Database;
-use Core\Validator;
+use Core\RegisteredUser;
+use Http\Forms\RegistrationForm;
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$form = RegistrationForm::validate($attributes = [
+    'email' => $_POST['email'],
+    'password' => $_POST['password']
+]);
 
-$errors = [];
-if (! Validator::email($email)) {
-    $errors['email'] = 'Please provided a valid email.';
-}
+(new RegisteredUser)->create($attributes['email'], $attributes['password']);
 
-if (! Validator::string($password, 7, 255)) {
-    $errors['email'] = 'Password provide a password at least to be 7 character.';
-}
-
-if (! empty($errors)) {
-    view('registration/create.view.php', [
-        'errors' => $errors
-    ]);
-}
-
-$db = App::resolve(Database::class);
-
-$user = $db->query('SELECT' . ' * FROM users WHERE email = :email', [
-    'email' => $email
-])->find();
-
-if (! $user) {
-    $db->query('INSERT' . ' INTO users (email, password) VALUES (:email, :password)', [
-        'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT),
-    ]);
-    $user = $db->query('SELECT' . ' * FROM users WHERE email = :email', [
-        'email' => $email
-    ])->find();
-
-    (new Authenticator)->login($user);
-}
 redirect('/');

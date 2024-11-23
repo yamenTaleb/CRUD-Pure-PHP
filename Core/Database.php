@@ -52,4 +52,9 @@ class Database
 
         return $result;
     }
+
+    public function lastId(): int
+    {
+        return $this->connection->lastInsertId();
+    }
 }

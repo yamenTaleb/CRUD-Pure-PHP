@@ -7,7 +7,7 @@ $db = App::resolve(Database::class);
 
 $currentUserId = $_SESSION['user']['id'];
 
-$notes = $db->query('SELECT * FROM notes WHERE user_id = :id', [
+$notes = $db->query('SELECT' . ' * FROM notes WHERE user_id = :id', [
     'id' => $currentUserId
 ])->get();
 

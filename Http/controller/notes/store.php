@@ -17,7 +17,7 @@ else {
 
     $db->query('INSERT' . ' INTO notes (body, user_id) VALUES (:body, :user_id)', [
         'body' => $_POST['body'],
-        'user_id' => 8
+        'user_id' => $_SESSION['user']['id']
     ]);
 
     header('location: /notes');
